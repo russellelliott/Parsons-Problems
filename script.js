@@ -5,12 +5,21 @@ const problemData = {
         { "id": "1", "code": "let tipAmount = mealCost * (tipPercentage /100);" },
         { "id": "2", "code": "let totalCost = mealCost + tipAmount;" },
         { "id": "3", "code": "let costPerPerson = totalCost / numPeople;" },
-        { "id": "4", "code": "xxx let costPerPerson = mealCost / numPeople;" },
-        { "id": "5", "code": "xxx let totalCost = mealCost - tipAmount;" },
-        { "id": "6", "code": "xxx let tipAmount = mealCost + (tipPercentage /100);" }
+        { "id": "4", "code": "let costPerPerson = mealCost / numPeople;" },
+        { "id": "5", "code": "let totalCost = mealCost - tipAmount;" },
+        { "id": "6", "code": "let tipAmount = mealCost + (tipPercentage /100);" }
     ],
     "correctOrder": ["1", "2", "3"]
 };
+
+// Shuffle the blocks
+shuffle(problemData.blocks);
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
 
 const previousAttempts = new Set();
 
