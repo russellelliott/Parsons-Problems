@@ -22,18 +22,27 @@
 
     <div id="parson" style="display: none;">
         <h1 id="prompt"></h1>
-        <div id="blocks-container"></div>
-        <div id="drop-zone-container"></div>
+        <h2>Instructions:</h2>
+        <ul>
+            <li>Drag and drop the blocks into the correct order to complete the activity. Click "Check Order" to check your answer.</li>
+            <li>If a block is in the right place, it will turn <span style="background-color:green;">green</span>.</li>
+            <li>If a block is in the wrong place, it will turn <span style="background-color:yellow;">yellow</span>.</li>
+            <li>If a block is not part of the solution, it will turn <span style="background-color:red;">red</span>.</li>
+        </ul>
+        <div class="container">
+            <div id="blocks-container"></div>
+            <div id="drop-zone-container"></div>
+        </div>
         <button id="check-order">Check Order</button>
         <button id="hint-button">Get Hint</button>
         <div id="result"></div>
     </div>
 
-    <div id="certificate" style="display:none;">
+    <div id="certificate" style="display: none;">
         <h1>Certificate of Completion</h1>
         <p>Congratulations, <span id="student-name"></span>!</p>
         <p>You have successfully completed all the Parsons problems in the <span id="activity-name-certificate"></span> activity.</p>
-        <button id="print-btn" onclick="window.print()">Print Certificate</button>
+        <button id="print-button">Print Certificate</button>
     </div>
 
     <script src="script.js"></script>
