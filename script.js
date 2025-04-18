@@ -41,6 +41,7 @@ const problems = [
 let currentProblemIndex = 0;
 let previousAttempts = new Set();
 let studentName = '';
+let activityName = '';
 
 const promptEl = document.getElementById('prompt');
 const blocksContainer = document.getElementById('blocks-container');
@@ -57,8 +58,10 @@ const studentNameSpan = document.getElementById('student-name');
 // Entry point
 startButton.addEventListener('click', () => {
     studentName = nameInput.value;
-    if (studentName.trim() === '') {
-        alert("Please enter your name.");
+    activityName = document.getElementById('activity-name').value; // Get the activity name input
+
+    if (studentName.trim() === '' || activityName.trim() === '') {
+        alert("Please enter both your name and the activity name.");
         return;
     }
 
@@ -213,13 +216,21 @@ checkButton.addEventListener('click', () => {
     }
 });
 
+// Function to display the certificate
 function showCertificate() {
     parsonDiv.style.display = 'none';
     certificateDiv.style.display = 'block';
 
-    // Ensure this is properly linked to the HTML element
+    // Ensure the student name and activity name are set on the certificate
     const studentNameSpan = document.getElementById('student-name');
-    studentNameSpan.innerText = studentName;  // This will display the student's name on the certificate
+    const activityNameSpan = document.getElementById('activity-name-certificate');
+    
+    if (studentNameSpan && activityNameSpan) {
+        studentNameSpan.innerText = studentName;  // Display student name on the certificate
+        activityNameSpan.innerText = activityName;  // Display activity name on the certificate
+    } else {
+        console.error("Elements for student name or activity name not found.");
+    }
 }
 
 function shuffle(array) {
