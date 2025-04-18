@@ -1,14 +1,22 @@
 .block {
- padding: 10px;
- border: 1px solid black;
+ padding:10px;
+ border:1px solid black;
  background-color: lightgray;
- margin: 5px;
- width: fit-content;
+ margin:5px;
+ width:100%;
+ box-sizing: border-box;
  cursor: move;
 }
 
 .drop-zone {
- padding: 10px;
- border: 1px dashed black;
+ padding:10px;
+ border:1px dashed black;
+ width:100%;
+ height:0; /* will be adjusted dynamically */
+ box-sizing: border-box;
+}
+
+#blocks-container, #drop-zone-container {
  width: fit-content;
+ margin:0 auto;
 }

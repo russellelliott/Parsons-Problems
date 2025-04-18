@@ -32,11 +32,20 @@ problemData.blocks.forEach(block => {
  });
 });
 
-// Create drop zones
+// Adjust width of blocks container and drop zone container
+const blocks = document.querySelectorAll('.block');
+const maxWidth = Math.max(...Array.from(blocks).map(block => block.offsetWidth));
+const maxHeight = Math.max(...Array.from(blocks).map(block => block.offsetHeight));
+blocksContainer.style.width = `${maxWidth}px`;
 const dropZoneContainer = document.getElementById('drop-zone-container');
+dropZoneContainer.style.width = `${maxWidth}px`;
+
+// Create drop zones
 problemData.correctOrder.forEach(() => {
  const dropZone = document.createElement('div');
  dropZone.classList.add('drop-zone');
+ dropZone.style.height = `${maxHeight+20}px`; // adjust height dynamically
+ dropZone.style.width = `${maxWidth+20}px`; // adjust height dynamically
  dropZoneContainer.appendChild(dropZone);
 
  // Add event listeners for drag and drop
