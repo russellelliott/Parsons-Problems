@@ -10,7 +10,6 @@
 ### Bayleaf 1: Inital Setup
 https://bayleaf.chat/s/4bd25c88-0cd1-4f6e-906d-c13db0cea9f7
 
-
 ### ChatGPT: Adjuting block drop logic
 https://chatgpt.com/share/68027116-d0e8-800c-af64-7590f9a7416e
 
@@ -30,3 +29,9 @@ https://chatgpt.com/share/6802da9d-e80c-800c-a72a-ac8b12290563
 
 ### Creating and Printing the Certificate
 https://chatgpt.com/share/6802e2dd-08b0-800c-b573-fe2ba5686e09
+
+### Instructions
+https://chatgpt.com/share/6802e6d8-f36c-800c-b119-9b4a95946ded
+
+### Div Positioning
+https://chatgpt.com/share/6802e6eb-319c-800c-bbbc-54612ff316b0
