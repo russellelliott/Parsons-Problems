@@ -81,10 +81,56 @@ problemData.correctOrder.forEach(() => {
     });
 });
 
-// Check order on button click
-document.getElementById('check-order').addEventListener('click', () => {
-    const dropZones = document.querySelectorAll('.drop-zone');
-    const userOrder = Array.from(dropZones).map(zone => zone.children[0]?.dataset.id);
-    const isCorrect = userOrder.filter(id => id !== undefined).join(',') === problemData.correctOrder.join(',');
-    document.getElementById('result').innerText = isCorrect ? 'Correct!' : 'Incorrect. Try again!';
+const checkButton = document.getElementById('check-order');
+
+checkButton.addEventListener('click', () => {
+  const dropZones = document.querySelectorAll('.drop-zone');
+  const userOrder = Array.from(dropZones).map(zone => zone.children[0]?.dataset.id);
+  const isCorrect = userOrder.filter(id => id !== undefined).join(',') === problemData.correctOrder.join(',');
+  
+  const resultText = document.getElementById('result');
+  resultText.innerText = isCorrect ? 'Correct!' : 'Incorrect. Try again!';
+
+  // Style each drop zone based on correctness
+  dropZones.forEach((zone, index) => {
+    const child = zone.children[0];
+    if (!child) {
+      zone.style.backgroundColor = ''; // reset if empty
+    } else if (child.dataset.id === problemData.correctOrder[index]) {
+      zone.style.backgroundColor = 'lightgreen';
+    } else {
+      zone.style.backgroundColor = '#f88'; // light red
+    }
+  });
+
+  // If incorrect, remove a random distractor
+  if (!isCorrect) {
+    const allUsedIds = new Set(userOrder.filter(Boolean));
+    const correctIds = new Set(problemData.correctOrder);
+
+    const distractorIds = problemData.blocks
+      .map(b => b.id)
+      .filter(id => !correctIds.has(id));
+
+    const availableDistractors = distractorIds.filter(id => {
+      const elem = document.getElementById(id);
+      return elem && elem.parentElement;
+    });
+
+    if (availableDistractors.length > 0) {
+      const randomIndex = Math.floor(Math.random() * availableDistractors.length);
+      const toRemoveId = availableDistractors[randomIndex];
+      const toRemoveElem = document.getElementById(toRemoveId);
+      toRemoveElem.remove();
+    }
+
+    // Disable the check button
+    checkButton.disabled = true;
+    checkButton.style.opacity = 0.5;
+  } else {
+    checkButton.disabled = false;
+    checkButton.style.opacity = 1;
+  }
 });
+
+  
