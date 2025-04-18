@@ -20,6 +20,21 @@ const problems = [
             { id: "d", code: "let diff = fahrenheit + 32;" }
         ],
         correctOrder: ["a", "b"]
+    },
+    {
+        "prompt": "Find the maximum number in a list called 'numbers'.",
+        "blocks": [
+            { "id": "a", "code": "max_value = numbers[numbers.length]" },
+            { "id": "b", "code": "max_value = numbers[0]" },
+            { "id": "c", "code": "for number in numbers:" },
+            { "id": "d", "code": "if number > max_value:" },
+            { "id": "e", "code": "max_value = number" },
+            { "id": "f", "code": "max_value += number" },
+            { "id": "g", "code": "if number < max_value:" },
+            { "id": "h", "code": "print(max_value)" },
+            { "id": "i", "code": "print(numbers)" }
+        ],
+        "correctOrder": ["b", "c", "d", "e", "h"]
     }
 ];
 
@@ -154,9 +169,13 @@ checkButton.addEventListener('click', () => {
             if (currentProblemIndex < problems.length) {
                 loadProblem(problems[currentProblemIndex]);
             } else {
+                //This is where the certificate is displayed
                 promptEl.innerText = "You've completed all problems!";
                 blocksContainer.innerHTML = '';
                 dropZoneContainer.innerHTML = '';
+                document.getElementById("check-order").style.display = "none";
+                document.getElementById("hint-button").style.display = "none";
+                document.getElementById("result").style.display = "none";
             }
         }, 1500);
     } else {

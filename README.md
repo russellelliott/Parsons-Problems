@@ -17,3 +17,7 @@ In vanilla javascript applications like this, API keys can be exposed, even with
 
 Adding ChatGPT for writing hints
 https://chatgpt.com/share/6802d09b-0854-800c-a919-e7d8abf67edd
+
+Some inspiration for additional problems
+https://chatgpt.com/share/6802da9d-e80c-800c-a72a-ac8b12290563
+
