@@ -1,0 +1,14 @@
+.block {
+ padding: 10px;
+ border: 1px solid black;
+ background-color: lightgray;
+ margin: 5px;
+ width: fit-content;
+ cursor: move;
+}
+
+.drop-zone {
+ padding: 10px;
+ border: 1px dashed black;
+ width: fit-content;
+}
