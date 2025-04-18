@@ -5,9 +5,9 @@ const problemData = {
         { "id": "1", "code": "let tipAmount = mealCost * (tipPercentage /100);" },
         { "id": "2", "code": "let totalCost = mealCost + tipAmount;" },
         { "id": "3", "code": "let costPerPerson = totalCost / numPeople;" },
-        { "id": "4", "code": "let costPerPerson = mealCost / numPeople;" },
-        { "id": "5", "code": "let totalCost = mealCost - tipAmount;" },
-        { "id": "6", "code": "let tipAmount = mealCost + (tipPercentage /100);" }
+        { "id": "4", "code": "xxx let costPerPerson = mealCost / numPeople;" },
+        { "id": "5", "code": "xxx let totalCost = mealCost - tipAmount;" },
+        { "id": "6", "code": "xxx let tipAmount = mealCost + (tipPercentage /100);" }
     ],
     "correctOrder": ["1", "2", "3"]
 };
@@ -125,11 +125,11 @@ checkButton.addEventListener('click', () => {
     }
 
     // Disable the check button
-    checkButton.disabled = true;
-    checkButton.style.opacity = 0.5;
+    // checkButton.disabled = true;
+    // checkButton.style.opacity = 0.5;
   } else {
-    checkButton.disabled = false;
-    checkButton.style.opacity = 1;
+    // checkButton.disabled = false;
+    // checkButton.style.opacity = 1;
   }
 });
 
