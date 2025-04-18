@@ -12,6 +12,8 @@ const problemData = {
     "correctOrder": ["1", "2", "3"]
 };
 
+const previousAttempts = new Set();
+
 // Display prompt
 document.getElementById('prompt').innerText = problemData.prompt;
 
@@ -64,6 +66,8 @@ problemData.correctOrder.forEach(() => {
         }
 
         dropZone.appendChild(newBlock); // Add the new block
+        evaluateIfNewAnswer();
+
     });
 
 
@@ -78,59 +82,84 @@ problemData.correctOrder.forEach(() => {
         const id = e.dataTransfer.getData('id');
         const blockDiv = document.getElementById(id);
         blocksContainer.appendChild(blockDiv); // Move it back to the word bank
+        evaluateIfNewAnswer();
     });
 });
 
 const checkButton = document.getElementById('check-order');
 
 checkButton.addEventListener('click', () => {
-  const dropZones = document.querySelectorAll('.drop-zone');
-  const userOrder = Array.from(dropZones).map(zone => zone.children[0]?.dataset.id);
-  const isCorrect = userOrder.filter(id => id !== undefined).join(',') === problemData.correctOrder.join(',');
+    const dropZones = document.querySelectorAll('.drop-zone');
+    const userOrder = Array.from(dropZones).map(zone => zone.children[0]?.dataset.id || '');
+    const answerKey = userOrder.join(',');
   
-  const resultText = document.getElementById('result');
-  resultText.innerText = isCorrect ? 'Correct!' : 'Incorrect. Try again!';
-
-  // Style each drop zone based on correctness
-  dropZones.forEach((zone, index) => {
-    const child = zone.children[0];
-    if (!child) {
-      zone.style.backgroundColor = ''; // reset if empty
-    } else if (child.dataset.id === problemData.correctOrder[index]) {
-      zone.style.backgroundColor = 'lightgreen';
+    // Check if this attempt has already been made
+    if (previousAttempts.has(answerKey)) {
+      alert("You've already tried this combination.");
+      checkButton.disabled = true;
+      checkButton.style.opacity = 0.5;
+      return;
+    }
+  
+    // Store this attempt
+    previousAttempts.add(answerKey);
+  
+    const isCorrect = userOrder.join(',') === problemData.correctOrder.join(',');
+    document.getElementById('result').innerText = isCorrect ? 'Correct!' : 'Incorrect. Try again!';
+  
+    // Style the drop zones
+    dropZones.forEach((zone, index) => {
+      const child = zone.children[0];
+      if (!child) {
+        zone.style.backgroundColor = '';
+      } else if (child.dataset.id === problemData.correctOrder[index]) {
+        zone.style.backgroundColor = 'lightgreen';
+      } else {
+        zone.style.backgroundColor = '#f88';
+      }
+    });
+  
+    // Handle distractor removal and disabling button if wrong
+    if (!isCorrect) {
+      const allUsedIds = new Set(userOrder.filter(Boolean));
+      const correctIds = new Set(problemData.correctOrder);
+  
+      const distractorIds = problemData.blocks
+        .map(b => b.id)
+        .filter(id => !correctIds.has(id));
+  
+      const availableDistractors = distractorIds.filter(id => {
+        const elem = document.getElementById(id);
+        return elem && elem.parentElement;
+      });
+  
+      if (availableDistractors.length > 0) {
+        const randomIndex = Math.floor(Math.random() * availableDistractors.length);
+        const toRemoveId = availableDistractors[randomIndex];
+        const toRemoveElem = document.getElementById(toRemoveId);
+        toRemoveElem.remove();
+      }
+  
+      checkButton.disabled = true;
+      checkButton.style.opacity = 0.5;
     } else {
-      zone.style.backgroundColor = '#f88'; // light red
+      checkButton.disabled = false;
+      checkButton.style.opacity = 1;
     }
   });
+  
 
-  // If incorrect, remove a random distractor
-  if (!isCorrect) {
-    const allUsedIds = new Set(userOrder.filter(Boolean));
-    const correctIds = new Set(problemData.correctOrder);
-
-    const distractorIds = problemData.blocks
-      .map(b => b.id)
-      .filter(id => !correctIds.has(id));
-
-    const availableDistractors = distractorIds.filter(id => {
-      const elem = document.getElementById(id);
-      return elem && elem.parentElement;
-    });
-
-    if (availableDistractors.length > 0) {
-      const randomIndex = Math.floor(Math.random() * availableDistractors.length);
-      const toRemoveId = availableDistractors[randomIndex];
-      const toRemoveElem = document.getElementById(toRemoveId);
-      toRemoveElem.remove();
+  function evaluateIfNewAnswer() {
+    const dropZones = document.querySelectorAll('.drop-zone');
+    const currentOrder = Array.from(dropZones).map(zone => zone.children[0]?.dataset.id || '');
+    const currentKey = currentOrder.join(',');
+  
+    const isNew = !previousAttempts.has(currentKey);
+    checkButton.disabled = !isNew;
+    checkButton.style.opacity = isNew ? 1 : 0.5;
+  
+    if (!isNew) {
+      alert("You've already tried this combination.");
     }
-
-    // Disable the check button
-    // checkButton.disabled = true;
-    // checkButton.style.opacity = 0.5;
-  } else {
-    // checkButton.disabled = false;
-    // checkButton.style.opacity = 1;
   }
-});
-
   
