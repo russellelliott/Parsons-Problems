@@ -40,15 +40,33 @@ const problems = [
 
 let currentProblemIndex = 0;
 let previousAttempts = new Set();
+let studentName = '';
 
 const promptEl = document.getElementById('prompt');
 const blocksContainer = document.getElementById('blocks-container');
 const dropZoneContainer = document.getElementById('drop-zone-container');
 const resultEl = document.getElementById('result');
 const checkButton = document.getElementById('check-order');
+const startButton = document.getElementById('start-button');
+const nameInput = document.getElementById('name');
+const studentDiv = document.getElementById('student');
+const parsonDiv = document.getElementById('parson');
+const certificateDiv = document.getElementById('certificate');
+const studentNameSpan = document.getElementById('student-name');
 
 // Entry point
-loadProblem(problems[currentProblemIndex]);
+startButton.addEventListener('click', () => {
+    studentName = nameInput.value;
+    if (studentName.trim() === '') {
+        alert("Please enter your name.");
+        return;
+    }
+
+    studentDiv.style.display = 'none';
+    parsonDiv.style.display = 'block';
+
+    loadProblem(problems[currentProblemIndex]);
+});
 
 function loadProblem(problem) {
     previousAttempts.clear();
@@ -169,13 +187,7 @@ checkButton.addEventListener('click', () => {
             if (currentProblemIndex < problems.length) {
                 loadProblem(problems[currentProblemIndex]);
             } else {
-                //This is where the certificate is displayed
-                promptEl.innerText = "You've completed all problems!";
-                blocksContainer.innerHTML = '';
-                dropZoneContainer.innerHTML = '';
-                document.getElementById("check-order").style.display = "none";
-                document.getElementById("hint-button").style.display = "none";
-                document.getElementById("result").style.display = "none";
+                showCertificate();
             }
         }, 1500);
     } else {
@@ -200,6 +212,12 @@ checkButton.addEventListener('click', () => {
         checkButton.style.opacity = 0.5;
     }
 });
+
+function showCertificate() {
+    parsonDiv.style.display = 'none';
+    certificateDiv.style.display = 'block';
+    studentNameSpan.innerText = studentName;
+}
 
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {

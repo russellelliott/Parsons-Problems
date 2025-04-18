@@ -9,12 +9,26 @@
 </head>
 
 <body>
-    <h2 id="prompt"></h2>
-    <div id="blocks-container"></div>
-    <div id="drop-zone-container"></div>
-    <button id="check-order">Check Order</button>
-    <button id="hint-button">Get Hint</button>
-    <div id="result"></div>
+    <div id="student">
+        <label for="name">Enter your name:</label>
+        <input type="text" id="name" placeholder="Your Name">
+        <button id="start-button">Start</button>
+    </div>
+
+    <div id="parson" style="display: none;">
+        <h2 id="prompt"></h2>
+        <div id="blocks-container"></div>
+        <div id="drop-zone-container"></div>
+        <button id="check-order">Check Order</button>
+        <button id="hint-button">Get Hint</button>
+        <div id="result"></div>
+    </div>
+
+    <div id="certificate" style="display: none;">
+        <h2>Certificate of Achievement</h2>
+        <p>Congratulations, <span id="student-name"></span>! You've completed all the problems.</p>
+        <p>Well done!</p>
+    </div>
 
     <script src="script.js"></script>
     <script src="hint.js"></script>
