@@ -32,3 +32,18 @@ button:disabled {
     opacity: 0.6;
     cursor: not-allowed;
 }
+
+#certificate {
+    text-align: center;
+    margin-top: 20px;
+}
+
+@media print {
+    #print-button {
+        display: none;
+    }
+
+    body {
+        font-family: sans-serif;
+    }
+}

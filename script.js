@@ -22,19 +22,19 @@ const problems = [
         correctOrder: ["a", "b"]
     },
     {
-        "prompt": "Find the maximum number in a list called 'numbers'.",
-        "blocks": [
-            { "id": "a", "code": "max_value = numbers[numbers.length]" },
-            { "id": "b", "code": "max_value = numbers[0]" },
-            { "id": "c", "code": "for number in numbers:" },
-            { "id": "d", "code": "if number > max_value:" },
-            { "id": "e", "code": "max_value = number" },
-            { "id": "f", "code": "max_value += number" },
-            { "id": "g", "code": "if number < max_value:" },
-            { "id": "h", "code": "print(max_value)" },
-            { "id": "i", "code": "print(numbers)" }
+        prompt: "Find the maximum number in a list called 'numbers'.",
+        blocks: [
+            { id: "a", code: "max_value = numbers[numbers.length]" },
+            { id: "b", code: "max_value = numbers[0]" },
+            { id: "c", code: "for number in numbers:" },
+            { id: "d", code: "if number > max_value:" },
+            { id: "e", code: "max_value = number" },
+            { id: "f", code: "max_value += number" },
+            { id: "g", code: "if number < max_value:" },
+            { id: "h", code: "print(max_value)" },
+            { id: "i", code: "print(numbers)" }
         ],
-        "correctOrder": ["b", "c", "d", "e", "h"]
+        correctOrder: ["b", "c", "d", "e", "h"]
     }
 ];
 
@@ -216,7 +216,10 @@ checkButton.addEventListener('click', () => {
 function showCertificate() {
     parsonDiv.style.display = 'none';
     certificateDiv.style.display = 'block';
-    studentNameSpan.innerText = studentName;
+
+    // Ensure this is properly linked to the HTML element
+    const studentNameSpan = document.getElementById('student-name');
+    studentNameSpan.innerText = studentName;  // This will display the student's name on the certificate
 }
 
 function shuffle(array) {
