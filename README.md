@@ -3,6 +3,8 @@
 ```shell
 python3 -m http.server
 ```
+Page is hosted on port 8000
+http://localhost:8000/index.html?specification=python.json
 
 
 ## Files
