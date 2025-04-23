@@ -3,7 +3,7 @@ let problems = [];
 let currentProblemIndex = 0;
 let previousAttempts = new Set();
 let studentName = '';
-let activityName = '';
+let activityName = ''; // Activity name from JSON
 
 const promptEl = document.getElementById('prompt');
 const blocksContainer = document.getElementById('blocks-container');
@@ -17,16 +17,7 @@ const parsonDiv = document.getElementById('parson');
 const certificateDiv = document.getElementById('certificate');
 const studentNameSpan = document.getElementById('student-name');
 
-// Entry point
-startButton.addEventListener('click', async () => {
-    studentName = nameInput.value;
-    activityName = document.getElementById('activity-name').value; // Get the activity name input
-
-    if (studentName.trim() === '' || activityName.trim() === '') {
-        alert("Please enter both your name and the activity name.");
-        return;
-    }
-
+window.addEventListener('DOMContentLoaded', async () => {
     const urlParams = new URLSearchParams(window.location.search);
     const specificationFile = urlParams.get('specification');
 
@@ -36,14 +27,28 @@ startButton.addEventListener('click', async () => {
             if (!response.ok) {
                 throw new Error(`Failed to load specification file: ${specificationFile}`);
             }
-            problems = await response.json();
+            const data = await response.json();
+            activityName = data.activityName; // Set activity name from JSON
+            problems = data.problems;
+
+            // Display activity name globally
+            document.getElementById('activity-name-display').innerText = activityName;
+            document.getElementById('activity-name-certificate').innerText = activityName;
         } catch (error) {
             console.error(error);
             alert("Failed to load the problem specification file. Please check the file path.");
-            return;
         }
     } else {
         alert("No specification file provided in the URL. Please include '?specification=example.json'.");
+    }
+});
+
+// Entry point
+startButton.addEventListener('click', () => {
+    studentName = nameInput.value;
+
+    if (studentName.trim() === '') {
+        alert("Please enter your name.");
         return;
     }
 

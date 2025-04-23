@@ -48,41 +48,56 @@ button:disabled {
     }
 }
 
+#header-container {
+    position: fixed; /* Keep the header fixed at the top */
+    top: 0;
+    left: 0;
+    width: 100%; /* Make the header span the full width */
+    background-color: #f8f9fa; /* Light background color for the header */
+    border-bottom: 2px solid #ccc; /* Add a subtle border below the header */
+    text-align: center; /* Center the text */
+    padding: 20px 0; /* Increase vertical padding */
+    z-index: 1000; /* Ensure the header stays above other content */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Add a slight shadow for better visibility */
+}
 
 body {
     display: flex;
-    justify-content: center; /* Center the container horizontally */
-    align-items: top; /* Center the container vertically */
-    height: 100vh; /* Make sure the container takes the full height */
-    width: 100vw; /* Make sure the container takes the full width */
-    margin: 0; /* Remove any default margin */
-  }
+    flex-direction: column; /* Stack content vertically */
+    justify-content: flex-start; /* Align content to the top */
+    align-items: center; /* Center content horizontally */
+    height: 100vh; /* Ensure the body takes the full viewport height */
+    width: 100vw; /* Ensure the body takes the full viewport width */
+    margin: 0; /* Remove default margin */
+    padding-top: 120px; /* Increase padding to prevent overlap with the header */
+    overflow: hidden; /* Prevent scrolling */
+}
 
-  .container {
+.container {
     display: flex;
     justify-content: center; /* Ensure items are side by side and centered */
     gap: 20px; /* Optional: Add spacing between the two divs */
-  }
+}
 
-  #blocks-container, #drop-zone-container {
+#blocks-container, #drop-zone-container {
     width: 50%; /* Adjust the width as needed */
     height: 50%; /* Adjust the height as needed */
-  }
+}
 
-  div#blocks-container {
+div#blocks-container {
     min-height: 100px; /* Fallback minimum height */
     border: 2px solid #000; /* Add a border outline */
     background-color: #f0f0f0; /* Set a light gray background color */
-  }
+}
 
-  #drop-zone-container {
+#drop-zone-container {
     min-height: 100px; /* Ensure drop-zone-container has a minimum height */
-  }
+}
 
-  #result {
+#result {
     width: 100vw; /* Set the width to exceed the viewport */
     
     position: absolute; /* Remove it from the normal flow to not disrupt layout */
     top: 75%; /* Adjust as needed for positioning */
     left: 0; /* Align it to the left */
-  }
+}
