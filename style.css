@@ -69,6 +69,16 @@ body {
     height: 50%; /* Adjust the height as needed */
   }
 
+  div#blocks-container {
+    min-height: 100px; /* Fallback minimum height */
+    border: 2px solid #000; /* Add a border outline */
+    background-color: #f0f0f0; /* Set a light gray background color */
+  }
+
+  #drop-zone-container {
+    min-height: 100px; /* Ensure drop-zone-container has a minimum height */
+  }
+
   #result {
     width: 100vw; /* Set the width to exceed the viewport */
     

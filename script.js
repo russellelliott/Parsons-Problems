@@ -80,12 +80,15 @@ function loadProblem(problem) {
         });
     });
 
-    // Adjust container width
+    // Adjust container width and height
     const blocks = document.querySelectorAll('.block');
     const maxWidth = Math.max(...Array.from(blocks).map(block => block.offsetWidth));
     const maxHeight = Math.max(...Array.from(blocks).map(block => block.offsetHeight));
     blocksContainer.style.width = `${maxWidth}px`;
     dropZoneContainer.style.width = `${maxWidth}px`;
+
+    // Set blocks-container minimum height to match drop-zone-container
+    blocksContainer.style.minHeight = `${dropZoneContainer.offsetHeight}px`;
 
     // Drop zones
     problem.correctOrder.forEach(() => {
