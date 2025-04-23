@@ -1,3 +1,10 @@
+## Running locally
+`fetch` doesn't work in the `file://` protocol. You need to host a local webserver using this command. Enter this in the commandline:
+```shell
+python3 -m http.server
+```
+
+
 ## Files
 `index.html`: webpage for the activity
 `script.js`: script for the problems, answer logic, progression, etc

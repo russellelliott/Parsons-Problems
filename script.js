@@ -1,42 +1,4 @@
-const problems = [
-    {
-        prompt: "Divide the cost of a meal and tip among a given number of people.",
-        blocks: [
-            { id: "1", code: "let tipAmount = mealCost * (tipPercentage /100);" },
-            { id: "2", code: "let totalCost = mealCost + tipAmount;" },
-            { id: "3", code: "let costPerPerson = totalCost / numPeople;" },
-            { id: "4", code: "let costPerPerson = mealCost / numPeople;" },
-            { id: "5", code: "let totalCost = mealCost - tipAmount;" },
-            { id: "6", code: "let tipAmount = mealCost + (tipPercentage /100);" }
-        ],
-        correctOrder: ["1", "2", "3"]
-    },
-    {
-        prompt: "Convert a temperature from Fahrenheit to Celsius.",
-        blocks: [
-            { id: "a", code: "let diff = fahrenheit - 32;" },
-            { id: "b", code: "let celsius = diff * (5 / 9);" },
-            { id: "c", code: "let celsius = fahrenheit * (5 / 9);" },
-            { id: "d", code: "let diff = fahrenheit + 32;" }
-        ],
-        correctOrder: ["a", "b"]
-    },
-    {
-        prompt: "Find the maximum number in a list called 'numbers'.",
-        blocks: [
-            { id: "a", code: "max_value = numbers[numbers.length]" },
-            { id: "b", code: "max_value = numbers[0]" },
-            { id: "c", code: "for number in numbers:" },
-            { id: "d", code: "if number > max_value:" },
-            { id: "e", code: "max_value = number" },
-            { id: "f", code: "max_value += number" },
-            { id: "g", code: "if number < max_value:" },
-            { id: "h", code: "print(max_value)" },
-            { id: "i", code: "print(numbers)" }
-        ],
-        correctOrder: ["b", "c", "d", "e", "h"]
-    }
-];
+let problems = [];
 
 let currentProblemIndex = 0;
 let previousAttempts = new Set();
@@ -56,12 +18,32 @@ const certificateDiv = document.getElementById('certificate');
 const studentNameSpan = document.getElementById('student-name');
 
 // Entry point
-startButton.addEventListener('click', () => {
+startButton.addEventListener('click', async () => {
     studentName = nameInput.value;
     activityName = document.getElementById('activity-name').value; // Get the activity name input
 
     if (studentName.trim() === '' || activityName.trim() === '') {
         alert("Please enter both your name and the activity name.");
+        return;
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const specificationFile = urlParams.get('specification');
+
+    if (specificationFile) {
+        try {
+            const response = await fetch(specificationFile);
+            if (!response.ok) {
+                throw new Error(`Failed to load specification file: ${specificationFile}`);
+            }
+            problems = await response.json();
+        } catch (error) {
+            console.error(error);
+            alert("Failed to load the problem specification file. Please check the file path.");
+            return;
+        }
+    } else {
+        alert("No specification file provided in the URL. Please include '?specification=example.json'.");
         return;
     }
 
