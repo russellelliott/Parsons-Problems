@@ -4,14 +4,14 @@
         {
             "prompt": "Divide the cost of a meal and tip among a given number of people.",
             "blocks": [
-                { "id": "1", "code": "let tipAmount = mealCost * (tipPercentage /100);" },
-                { "id": "2", "code": "let totalCost = mealCost + tipAmount;" },
-                { "id": "3", "code": "let costPerPerson = totalCost / numPeople;" },
-                { "id": "4", "code": "let costPerPerson = mealCost / numPeople;" },
-                { "id": "5", "code": "let totalCost = mealCost - tipAmount;" },
-                { "id": "6", "code": "let tipAmount = mealCost + (tipPercentage /100);" }
+                { "id": "a", "code": "let tipAmount = mealCost * (tipPercentage /100);" },
+                { "id": "b", "code": "let totalCost = mealCost + tipAmount;" },
+                { "id": "c", "code": "let costPerPerson = totalCost / numPeople;" },
+                { "id": "d", "code": "let costPerPerson = mealCost / numPeople;" },
+                { "id": "e", "code": "let totalCost = mealCost - tipAmount;" },
+                { "id": "f", "code": "let tipAmount = mealCost + (tipPercentage /100);" }
             ],
-            "correctOrder": ["1", "2", "3"]
+            "correctOrder": ["a", "b", "c"]
         },
         {
             "prompt": "Convert a temperature from Fahrenheit to Celsius.",
