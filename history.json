@@ -1,0 +1,35 @@
+{
+    "activityName": "History Timeline Basics",
+    "problems": [
+        {
+            "prompt": "Arrange the events of early American history in the correct order.",
+            "blocks": [
+                { "id": "a", "code": "The Pilgrims establish the Plymouth Colony." },
+                { "id": "b", "code": "The American colonies declare independence from Britain." },
+                { "id": "c", "code": "Christopher Columbus arrives in the Americas." },
+                { "id": "d", "code": "The U.S. Constitution is written and signed." }
+            ],
+            "correctOrder": ["c", "a", "b", "d"]
+        },
+        {
+            "prompt": "Order the major events of the French Revolution.",
+            "blocks": [
+                { "id": "a", "code": "The storming of the Bastille takes place." },
+                { "id": "b", "code": "King Louis XVI is executed." },
+                { "id": "c", "code": "The Reign of Terror ends." },
+                { "id": "d", "code": "Napoleon rises to power." }
+            ],
+            "correctOrder": ["a", "b", "c", "d"]
+        },
+        {
+            "prompt": "Put these Ancient World events in the right sequence.",
+            "blocks": [
+                { "id": "a", "code": "The Great Pyramid of Giza is built." },
+                { "id": "b", "code": "Alexander the Great conquers much of the known world." },
+                { "id": "c", "code": "The Roman Republic is established." },
+                { "id": "d", "code": "Hammurabi creates one of the first written law codes." }
+            ],
+            "correctOrder": ["a", "d", "b", "c"]
+        }
+    ]
+}

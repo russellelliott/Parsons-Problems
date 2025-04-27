@@ -1,0 +1,35 @@
+{
+    "activityName": "Physics Basics",
+    "problems": [
+        {
+            "prompt": "Calculate the final velocity of an object given initial velocity, acceleration, and time.",
+            "blocks": [
+                { "id": "a", "code": "let changeInVelocity = acceleration * time;" },
+                { "id": "b", "code": "let finalVelocity = initialVelocity + changeInVelocity;" },
+                { "id": "c", "code": "let finalVelocity = acceleration + time;" },
+                { "id": "d", "code": "let changeInVelocity = initialVelocity * time;" }
+            ],
+            "correctOrder": ["a", "b"]
+        },
+        {
+            "prompt": "Find the force acting on an object using mass and acceleration.",
+            "blocks": [
+                { "id": "a", "code": "let force = mass / acceleration;" },
+                { "id": "b", "code": "let force = mass * acceleration;" },
+                { "id": "c", "code": "let mass = force / acceleration;" },
+                { "id": "d", "code": "let acceleration = mass / force;" }
+            ],
+            "correctOrder": ["b"]
+        },
+        {
+            "prompt": "Calculate the kinetic energy of an object given mass and velocity.",
+            "blocks": [
+                { "id": "a", "code": "let velocitySquared = velocity * velocity;" },
+                { "id": "b", "code": "let kineticEnergy = 0.5 * mass * velocitySquared;" },
+                { "id": "c", "code": "let kineticEnergy = mass + velocitySquared;" },
+                { "id": "d", "code": "let velocitySquared = mass * velocity;" }
+            ],
+            "correctOrder": ["a", "b"]
+        }
+    ]
+}
